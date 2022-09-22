@@ -18,7 +18,7 @@ def input
                 puts "Vui long nhap so tu nhien"
                 retry
         end 
-        i = i + 1
+        i+=1
     end
     return a
 end
