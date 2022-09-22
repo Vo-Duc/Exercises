@@ -22,9 +22,9 @@ def find_subarray(a)
     i = 0
     while i < a.length do
         if (i != 0 && a[i]>=a[i-1])
-            print ", " + a[i].to_s
+            print ", #{a[i].to_s}"
         else
-            print "\nMang con tang " + count.to_s + " : " + a[i].to_s
+            print "\nMang con tang #{count.to_s} : #{a[i].to_s}"
             count += 1
         end
         i += 1

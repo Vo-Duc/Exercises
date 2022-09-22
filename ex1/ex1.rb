@@ -23,8 +23,8 @@ def input
     return a
 end
 def find_min(a)
-    puts "Mang vua nhap la: " + a.to_s
-    puts "Phan tu be nhat trong mang la: " + a.min.to_s
+    puts "Mang vua nhap la: #{a.to_s}"
+    puts "Phan tu be nhat trong mang la: #{a.min.to_s}"
 end
 
 a = input
