@@ -2,45 +2,34 @@ def input
     puts "Nhap mang"
     a = Array.new
     i = 1
-    num = 0
-    flag = true
-    while (num != "-1" && i <= 99)
-        print "Nhap phan tu thu #{i}: "
-        num = gets.chomp
+    number = 0
+    while (number != -1 && i <= 99)
         begin
-            number = Integer(num)
+            print "Nhap phan tu thu #{i}: "
+            number = Integer(gets.chomp)
             if(number != -1)
                 if(number >= 0)
                     a.push(number)
                 else
-                    puts "Vui long nhap so tu nhien"
-                    flag = false
-                    break
+                    Integer("s")
                 end
             end
             rescue Exception => e
-                puts "Loi nhap"
-                flag = false
-                break
+                puts "Vui long nhap so tu nhien"
+                retry
         end 
         i = i + 1
     end
-    if (flag) 
-        return a
-    else
-        return false
-    end
+    return a
 end
-def output(a)
+def find_min(a)
     puts "Mang vua nhap la: " + a.to_s
     puts "Phan tu be nhat trong mang la: " + a.min.to_s
 end
 
 a = input
-if(a)
-    unless (a.length == 0)
-        output(a)
-    else
-        puts "Khong co phan tu nao trong mang"
-    end
+unless (a.length == 0)
+    find_min(a)
+else
+    puts "Khong co phan tu nao trong mang"
 end
