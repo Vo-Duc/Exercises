@@ -44,16 +44,6 @@ def create_csv_file
         end
     end
 end
-class User
-    def initialize(name, email, phone, address, dob, profile)
-        @name = name
-        @email = email
-        @phone = phone
-        @address = address
-        @dob = dob
-        @profile = profile
-      end
-end
 def inputPG
     # Initialize connection variables.
     host = String('localhost')
@@ -66,10 +56,6 @@ def inputPG
 
     puts csv_file_path = File.expand_path('file.csv')
     start_time = Time.now
-    users = []
-    CSV.foreach("file.csv", headers: true) do |row|
-        users << row
-    end
     $connection.exec("COPY table_user(name, email, phone, address, dob, profile) FROM '#{csv_file_path}' CSV HEADER DELIMITER ','")
     
     end_time = Time.now
