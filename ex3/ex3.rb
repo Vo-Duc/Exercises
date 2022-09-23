@@ -10,7 +10,7 @@ def input
             print a.to_s
             return a
         else
-            Integer("s")
+            raise
         end
         rescue Exception => e
             puts "Vui long nhap so tu nhien n, n>0 va n<=99"

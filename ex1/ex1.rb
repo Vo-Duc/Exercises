@@ -11,14 +11,14 @@ def input
                 if(number >= 0)
                     a.push(number)
                 else
-                    Integer("s")
+                    raise
                 end
             end
             rescue Exception => e
                 puts "Vui long nhap so tu nhien"
                 retry
         end 
-        i = i + 1
+        i+=1
     end
     return a
 end
