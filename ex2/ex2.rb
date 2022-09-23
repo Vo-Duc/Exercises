@@ -1,8 +1,10 @@
 require "csv"
 require "date"
+require "pg"
 
 $chars = ('!'..'/').to_a
 $address = ["Ho Chi Minh City", "Ha Noi", "Ha Tinh", "Binh Duong", "Nghe An", "Quang Ngai", "Hue"]
+$connection
 
 def create_name
     "Nguyen Van A " + rand(0..9).to_s
@@ -42,14 +44,38 @@ def create_csv_file
         end
     end
 end
-i=0
-start_time = Time.now
-# CSV.foreach("file.csv", headers: true) do |row|
-#     i = i + 1
-# end
-create_csv_file
-end_time = Time.now
-puts i
-puts start_time
-puts end_time
-puts end_time - start_time
+class User
+    def initialize(name, email, phone, address, dob, profile)
+        @name = name
+        @email = email
+        @phone = phone
+        @address = address
+        @dob = dob
+        @profile = profile
+      end
+end
+def inputPG
+    # Initialize connection variables.
+    host = String('localhost')
+    database = String('postgres')
+    user = String('postgres')
+    password = String('taduc123')
+
+    # Initialize connection object.
+    $connection = PG::Connection.new(:host => host, :user => user, :dbname => database, :port => '5432', :password => password)
+
+    puts csv_file_path = File.expand_path('file.csv')
+    start_time = Time.now
+    users = []
+    CSV.foreach("file.csv", headers: true) do |row|
+        users << row
+    end
+    $connection.exec("COPY table_user(name, email, phone, address, dob, profile) FROM '#{csv_file_path}' CSV HEADER DELIMITER ','")
+    
+    end_time = Time.now
+    puts start_time
+    puts end_time
+    puts end_time - start_time
+
+end
+inputPG
