@@ -5,6 +5,7 @@ require "pg"
 $chars = ('!'..'/').to_a
 $address = ["Ho Chi Minh City", "Ha Noi", "Ha Tinh", "Binh Duong", "Nghe An", "Quang Ngai", "Hue"]
 $connection
+NUMBER_OF_ROWS = 500000
 
 def create_name
     "Nguyen Van A " + rand(0..9).to_s
@@ -32,8 +33,8 @@ end
 
 def create_csv_file
     CSV.open("file.csv", "wb") do |csv|
-        csv << ["name", "Email", "Phone", "Address", "Day_Of_Birth", "Profile"]
-        for i in 1..500000
+        csv << ["Name", "Email", "Phone", "Address", "Day_Of_Birth", "Profile"]
+        for i in 1..NUMBER_OF_ROWS
             name = create_name
             mail = create_mail(name)
             phone = create_phone
@@ -44,7 +45,7 @@ def create_csv_file
         end
     end
 end
-def inputPG
+def import_to_db
     # Initialize connection variables.
     host = String('localhost')
     database = String('postgres')
@@ -54,8 +55,9 @@ def inputPG
     # Initialize connection object.
     $connection = PG::Connection.new(:host => host, :user => user, :dbname => database, :port => '5432', :password => password)
 
-    puts csv_file_path = File.expand_path('file.csv')
+    csv_file_path = File.expand_path('file.csv')
     start_time = Time.now
+
     $connection.exec("COPY table_user(name, email, phone, address, dob, profile) FROM '#{csv_file_path}' CSV HEADER DELIMITER ','")
     
     end_time = Time.now
@@ -64,4 +66,6 @@ def inputPG
     puts end_time - start_time
 
 end
-inputPG
+create_csv_file
+import_to_db
+#Thoi gian doc va import 500000 dong: ~2.5s

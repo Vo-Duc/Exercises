@@ -1,9 +1,10 @@
+ARRAY_SIZE = 99
 def input
     puts "Nhap mang"
     a = Array.new
     i = 1
     number = 0
-    while (number != -1 && i <= 99)
+    while (number != -1 && i <= ARRAY_SIZE)
         begin
             print "Nhap phan tu thu #{i}: "
             number = Integer(gets.chomp)

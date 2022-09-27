@@ -1,8 +1,9 @@
+ARRAY_SIZE = 99
 def input   
     begin
         print "Nhap so phan tu cua mang: "
         n = Integer(gets.chomp)
-        if(n>0 && n<=99)
+        if(n>0 && n<=ARRAY_SIZE)
             a=[]
             for i in 1..n
                 a.push(rand(1..9))
@@ -13,7 +14,7 @@ def input
             raise
         end
         rescue Exception => e
-            puts "Vui long nhap so tu nhien n, n>0 va n<=99"
+            puts "Vui long nhap so tu nhien n, n>0 va n<=#{ARRAY_SIZE}"
             retry
     end
 end
