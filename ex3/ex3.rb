@@ -1,3 +1,14 @@
+# Khởi tạo một mảng random gồm n (n≤ 99) số tự nhiên, 
+# với n nhập từ bàn phím, các phần tử trong mảng từ 1 đến 9. 
+# Sau đó hiển thị các dãy con tăng trong mảng
+# Vd: mảng được khởi tạo ngẫu nhiên là: [6, 8, 2, 5, 3, 6, 1, 2, 7, 1]
+# Output: 
+#  + mảng con tăng 1: 6, 8
+#  + mảng con tăng 2: 2, 5
+#  + mảng con tăng 3: 3, 6
+#  + mảng con tăng 4: 1, 2, 7
+#  + mảng con tăng 5: 1
+
 ARRAY_SIZE = 99
 def input   
     begin
